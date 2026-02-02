@@ -1,0 +1,143 @@
+{% extends 'tasks/base.html' %}
+{% load static %}
+{% load tz %}
+{% block content %}
+ <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h5 class="mb-0 fw-bold">Employee Task Manager</h5>
+            <small class="text-muted">{{role}}.{{department}}</small>
+        </div>
+        <a href="#" class="text-decoration-none text-dark">
+            <i class="bi bi-box-arrow-right"></i> Logout
+        </a>
+    </div>
+
+    <!-- Welcome Section -->
+    <div class="welcome-card mb-4">
+        <h2 class="fw-bold mb-1">
+            <i class="bi bi-building"></i> Welcome back,{{role}}
+        </h2>
+        <p class="mb-3">{% now  "l, d F Y" %}</p>
+
+        <div class="mb-3">
+            <span class="badge bg-light text-primary me-2">{{role}}</span>
+            <span class="badge bg-light text-primary">{{department}} Department</span>
+        </div>
+
+        <a href="{% url 'employee' pk %}" class="btn btn-light fw-semibold">
+            Go to My Dashboard <i class="bi bi-arrow-right"></i>
+        </a>
+    </div>
+
+    <!-- Company Overview -->
+    <h5 class="fw-bold mb-3">Company Overview</h5>
+
+    <div class="row g-3 mb-4">
+        <div class="col-md-3">
+            <div class="stat-card p-3 bg-white">
+                <small class="text-muted">Total Employees</small>
+                <h3 class="fw-bold">{{total_users}}</h3>
+                <small class="text-muted">
+                    <i class="bi bi-people"></i> Active workforce
+                </small>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="stat-card p-3 bg-white">
+                <small class="text-muted">Total Tasks</small>
+                <h3 class="fw-bold">{{total_tasks}}</h3>
+                <small class="text-muted">
+                    <i class="bi bi-list-check"></i> All assignments
+                </small>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="stat-card p-3 bg-white">
+                <small class="text-muted">Completed</small>
+                <h3 class="fw-bold">{{completed_tasks}}</h3>
+                <small class="text-success">
+                    <i class="bi bi-check-circle"></i> Tasks finished
+                </small>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="stat-card p-3 bg-white">
+                <small class="text-muted">Success Rate</small>
+                <h3 class="fw-bold">{{success_rate}}%</h3>
+                <small class="text-primary">
+                    <i class="bi bi-graph-up"></i> Company average
+                </small>
+            </div>
+        </div>
+    </div>
+
+    <!-- Department Status -->
+    <h5 class="fw-bold mb-3">Department Status</h5>
+
+<div class="row">
+    {% for dt in departments %}
+    <div class="col-md-4 mb-3">
+
+        <div class="dept-card bg-white p-3 shadow-sm rounded">
+
+            <!-- Department Name -->
+            <h6 class="fw-bold mb-1">{{ dt.name }}:{{dt.total_tasks}}</h6>
+             
+            <!-- Completion Rate -->
+            <div class="d-flex justify-content-between">
+                <small>Completion Rate</small>
+                <small class="fw-bold text-success">
+                    {{ dt.completion_rate }}%
+                </small>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress mt-1">
+                <div class="progress-bar bg-primary"
+                     role="progressbar"
+                     style="width: {{ dt.completion_rate }}%;"
+                     aria-valuenow="{{ dt.completion_rate }}"
+                     aria-valuemin="0"
+                     aria-valuemax="100">
+                </div>
+            </div>
+
+            <!-- Task Summary -->
+            <div class="d-flex justify-content-between mt-2">
+                <small class="text-muted">
+                    Done: {{ dt.completedd }}
+                </small>
+                <small class="text-muted">
+                    Pending: {{ dt.pendingg }}
+                </small>
+            </div>
+
+        </div>
+
+    </div>
+    {% empty %}
+    <p class="text-muted">No departments found.</p>
+    {% endfor %}
+</div>
+
+
+    <!-- CTA -->
+    <div class="cta-box d-flex justify-content-between align-items-center">
+        <div>
+            <h6 class="fw-bold mb-1">Ready to get started?</h6>
+            <small class="text-muted">
+                Manage your team and assign new tasks from your department dashboard.
+            </small>
+        </div>
+        <a href="{% url 'employee' pk %}" class="btn btn-dark">
+            <i class="bi bi-grid"></i> Open Department Dashboard
+        </a>
+    </div>
+
+</div>
+
+{% endblock %}

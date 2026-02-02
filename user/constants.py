@@ -1,0 +1,4 @@
+class Roles:
+    ADMIN="ADMIN"
+    MANAGER="MANAGER"
+    DEPARTMENT="DEPARTMENT"

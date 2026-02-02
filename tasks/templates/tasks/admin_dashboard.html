@@ -1,0 +1,68 @@
+{% extends 'tasks/base.html' %}
+{% load static %}
+{% block content %}
+{% include 'tasks/navbar.html' %}
+{% include 'tasks/status.html' %}
+
+  <!-- Task Management -->
+<div class="card p-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+            <h5 class="fw-bold mb-0">Task Management</h5>
+            <small class="text-muted">Assign and monitor tasks for your team</small>
+        </div>
+        <a href="{%  url 'assign_task' pk %}" class="btn btn-dark btn-sm">
+            + Assign Task
+        </a>
+    </div>
+
+    <!-- Tabs -->
+    <div class="d-flex gap-2 mb-4">
+         <span class="badge rounded-pill bg-primary">
+  All {{ total_task }}
+</span>
+<span class="badge rounded-pill bg-secondary">
+  Pending {{ pending }}
+</span>
+<span class="badge rounded-pill bg-warning text-dark">
+  In Progress {{ in_progress }}
+</span>
+<span class="badge rounded-pill bg-success">
+  Done {{ completed }}
+</span>
+    </div>
+
+<!-- Task Items -->
+<div class="col">
+    {% for task in tasks %}
+        <div class="col-12 mb-3">
+            <div class="card p-3 h-100">
+                <div class="d-flex justify-content-between">
+                    
+                    <div>
+                        <h6 class="fw-bold mb-1">{{ task.title }}</h6>
+                        <p class="text-muted mb-2">
+                            {{ task.description }}
+                        </p>
+
+                        <small class="text-muted">
+                            {{ task.assigned_to }} • {{ task.deadline }}
+                            <span class="status-badge bg-primary text-white ms-2">
+                                {{ task.status }}
+                            </span>
+                            <span><a class='btn status-badge bg-primary text-white ms-2'  href="{% url 'update_status' task.id %}">Update</a></span>
+                        </small>
+                    </div>
+
+                    <div>
+                        <span class="priority-high">
+                            {{ task.priority }}
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

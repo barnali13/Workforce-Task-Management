@@ -1,0 +1,58 @@
+ body {
+            background-color: #f8f9fb;
+            margin:20px;
+        }
+        .card {
+            border-radius: 12px;
+        }
+        .status-badge {
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+        .priority-high {
+            background-color: #ffe5e5;
+            color: #dc3545;
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+              .welcome-card {
+            background: linear-gradient(135deg, #2563eb, #4338ca);
+            color: white;
+            border-radius: 16px;
+            padding: 30px;
+        }
+
+        .stat-card {
+            border-radius: 14px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .dept-card {
+            border-radius: 14px;
+            border: 1px solid #e5e7eb;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dept-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 5px;
+            width: 100%;
+            background: var(--color);
+        }
+
+        .progress {
+            height: 8px;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, #f0f9ff, #eef2ff);
+            border-radius: 14px;
+            padding: 25px;
+            border: 1px solid #dbeafe;
+        }

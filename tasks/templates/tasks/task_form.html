@@ -1,0 +1,14 @@
+{% extends 'tasks/base.html' %}
+{% load static %}
+{% block content %}
+<form action="" method='POST'>
+    {% csrf_token %}
+    {%  if mode == "create" %}
+        {{ form.as_p }}
+        <input type="submit" name="Submit">
+    {% else %}
+        {{ form.status }}
+        <input type="submit" name="Submit">
+    {% endif %}
+</form>
+{% endblock %}

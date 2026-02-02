@@ -1,0 +1,8 @@
+class Status:
+    PENDING="PENDING"
+    IN_PROGRESS="IN PROGRESS"
+    COMPLETED="COMPLETED"
+class Priority:
+    HIGH="HIGH"
+    MEDIUM="MEDIUM"
+    LOW="LOW"

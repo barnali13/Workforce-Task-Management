@@ -1,0 +1,61 @@
+
+{% extends 'tasks/base.html' %}
+{% load static %}
+
+{% block content %}
+{% include 'tasks/navbar.html' %}
+{% include 'tasks/status.html' %}
+ <!-- My Tasks -->
+    <div class="card p-4">
+        <h6 class="fw-bold mb-0">My Tasks</h6>
+        <small class="text-muted mb-3 d-block">
+            View and manage your assigned tasks
+        </small>
+
+        <!-- Tabs -->
+        <div class="d-flex gap-2 mb-4">
+            <span class="badge rounded-pill bg-primary">
+  All {{ total_task }}
+</span>
+<span class="badge rounded-pill bg-secondary">
+  Pending {{ pending }}
+</span>
+<span class="badge rounded-pill bg-warning text-dark">
+  In Progress {{ in_progress }}
+</span>
+<span class="badge rounded-pill bg-success">
+  Done {{ completed }}
+</span>
+
+        </div>
+
+        <!-- Task Card -->
+        <div class="card p-3">
+            {% for task in tasks %}
+            <div class="d-flex justify-content-between">
+                <div>
+                    <h6 class="fw-bold mb-1">{{task.title}}</h6>
+                    <p class="text-muted mb-2">
+                      {{task.description}}
+                    </p>
+                    <small class="text-muted">
+                        📅 {{task.deadline}}
+                    </small>
+                    <span class="status-badge bg-primary text-white ms-2">
+                       {{task.status}}
+                    </span>
+                    <span><a class='btn status-badge bg-primary text-white ms-2'  href="{% url 'update_status' task.id %}">Update</a></span>
+                </div>
+                {% endfor %}
+                {% for task in tasks %}
+                <div>
+                    <span class="priority-high">{{task.priority}}</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}
