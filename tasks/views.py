@@ -3,8 +3,30 @@ from .forms import *
 from .models import Task
 from user.models import UserProfile
 from django.contrib.auth.models import User
+from user.constants import Roles
+from django.contrib import messages
+from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.decorators import login_required
+from .decorators import unauthenticated_user,allowed_users
 
+@unauthenticated_user
+def loginPage(request):
+    if request.method == "POST":
+        username=request.POST.get('username')
+        password=request.POST.get('password')
+        user=authenticate(request,username=username,password=password)
+        if user is not None:
+            login(request,user)
+            return redirect('home')
+    else:
+        messages.info(request, "Username or password didn't match")
+    return render(request,'tasks/login.html')
+@login_required(login_url='login')
+def logoutUser(request):
+    logout(request)
+    return redirect('login')
 # Create your views here.
+@login_required(login_url='login')
 def home(request):
     user = request.user
 
@@ -64,23 +86,32 @@ def home(request):
 
 
     return render(request, 'tasks/main_dashboard.html', context)
-def admin_dashboard(request,pk):
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['Admin','Super Admin'])
+def admin_dashboard(request):
+    departments = (
+        UserProfile.objects
+        .filter(role=Roles.DEPARTMENT)
+        .exclude(dept__isnull=True)
+        .exclude(dept__exact='')
+        .values_list('dept', flat=True)
+        .distinct()
+    )
     tasks=Task.objects.all().order_by('-updated_at')
     task_total=tasks.count()
     pending=tasks.filter(status="PENDING").count()
     in_progress=tasks.filter(status="IN PROGRESS").count()
     completed=tasks.filter(status="COMPLETED").count()
-    user=UserProfile.objects.get(id=pk)
     context={
+        'departments':departments,
         'tasks':tasks,
         'total_task':task_total,
-        'user':user,
         'pending':pending,
         'in_progress':in_progress,
-        'completed':completed,
-        'pk':pk
+        'completed':completed
     }
     return render(request,'tasks/admin_dashboard.html',context)
+@login_required(login_url='login')
 def employee_dashboard(request,pk):
     user=UserProfile.objects.get(id=pk)
     tasks=user.task_set.all()
@@ -98,12 +129,13 @@ def employee_dashboard(request,pk):
 
     }
     return render(request,'tasks/employee_dashboard.html',context)
-def assign_task(request,pk):
+@login_required(login_url='login')
+def assign_task(request):
     form=TaskForm(request.POST)
     if request.method =='POST':
         if form.is_valid():
             form.save()
-            return redirect('admin_dashboard',pk=pk)
+            return redirect('admin_dashboard')
     context={
         'form':form,
         'mode':"create"
@@ -122,4 +154,19 @@ def update_task_status(request,pk):
              "mode":"update"
              }
     return render(request,'tasks/task_form.html',context)
-
+@login_required(login_url='login')
+def department_dashboard(request,dept):
+    tasks=Task.objects.filter(assigned_to__dept__iexact=dept)
+    total_tasks=tasks.count()
+    pending=tasks.filter(status="PENDING").count()
+    completed=tasks.filter(status='COMPLETED').count()
+    in_progress=tasks.filter(status="IN PROGRESS").count()
+    context={
+        'dept':dept,
+        'tasks':tasks,
+        'total_task':total_tasks,
+        'pending':pending,
+        'completed':completed,
+        'in_progress':in_progress
+    }
+    return render(request,'tasks/department_dashboard.html',context)

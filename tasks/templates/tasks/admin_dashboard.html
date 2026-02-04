@@ -6,12 +6,37 @@
 
   <!-- Task Management -->
 <div class="card p-4">
-    <div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="d-flex justify-content-between  align-items-center mb-3">
         <div>
             <h5 class="fw-bold mb-0">Task Management</h5>
             <small class="text-muted">Assign and monitor tasks for your team</small>
         </div>
-        <a href="{%  url 'assign_task' pk %}" class="btn btn-dark btn-sm">
+          <div class="dropdown ms-auto me-3">
+      <button
+        class="btn btn-dark btn-sm dropdown-toggle department-btn"
+        type="button"
+        id="departmentDropdown"
+        data-bs-toggle="dropdown"
+        aria-expanded="false">
+        Departments
+      </button>
+
+      <ul class="dropdown-menu dropdown-menu-end department-menu"
+          aria-labelledby="departmentDropdown">
+
+        {% for dept in departments %}
+        <li>
+          <a class="dropdown-item"
+             href="{% url 'department' dept %}">
+            {{ dept }}
+          </a>
+        </li>
+        {% endfor %}
+
+      </ul>
+    </div>
+
+        <a href="{%  url 'assign_task' %}" class="btn btn-dark btn-sm">
             + Assign Task
         </a>
     </div>
@@ -50,7 +75,7 @@
                             <span class="status-badge bg-primary text-white ms-2">
                                 {{ task.status }}
                             </span>
-                            <span><a class='btn status-badge bg-primary text-white ms-2'  href="{% url 'update_status' task.id %}">Update</a></span>
+                            <span><a class='btn btn-warning status-badge text-black ms-2'  href="{% url 'update_status' task.id %}">Update</a></span>
                         </small>
                     </div>
 

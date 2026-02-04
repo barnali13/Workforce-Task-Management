@@ -7,21 +7,21 @@
 {% include 'tasks/status.html' %}
  <!-- My Tasks -->
     <div class="card p-4">
-        <h6 class="fw-bold mb-0">My Tasks</h6>
+        <h6 class="fw-bold mb-0">Department Tasks</h6>
         <small class="text-muted mb-3 d-block">
-            View and manage your assigned tasks
+            View and manage assigned tasks
         </small>
 
         <!-- Tabs -->
         <div class="d-flex gap-2 mb-4">
             <span class="badge rounded-pill bg-primary">
-  All {{ total_task }}
+  All {{ total_tasks }}
 </span>
 <span class="badge rounded-pill bg-secondary">
   Pending {{ pending }}
 </span>
 <span class="badge rounded-pill bg-warning text-dark">
-  In Progress {{ in_progress }}
+  In Progress {{ progress }}
 </span>
 <span class="badge rounded-pill bg-success">
   Done {{ completed }}

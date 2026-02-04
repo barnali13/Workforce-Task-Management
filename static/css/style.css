@@ -56,3 +56,38 @@
             padding: 25px;
             border: 1px solid #dbeafe;
         }
+/* Department dropdown button */
+.department-btn {
+    background-color: #212529;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-weight: 500;
+}
+
+/* Dropdown menu */
+.department-menu {
+    min-width: 260px;
+    padding: 6px 0;
+    border-radius: 8px;
+}
+
+/* Dropdown items */
+.department-menu .dropdown-item {
+    color: #212529;
+    font-weight: 500;
+    padding: 8px 16px;
+    white-space: normal;   /* allows long names to wrap */
+}
+
+/* Hover effect */
+.department-menu .dropdown-item:hover {
+    background-color: #f1f3f5;
+    color: #000;
+}
+
+/* Remove underline if any browser applies it */
+.department-menu a {
+    text-decoration: none;
+}
+
+
