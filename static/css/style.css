@@ -1,42 +1,38 @@
-body {
-            background-color: #f8f9fb;
-            margin:50px;
-        }
-        .card {
+body{
+background-color: var(--bs-body-bg);
+color: var(--bs-body-color);
+margin:50px;
+}
+.card {
             border-radius: 12px;
         }
-        .status-badge {
+.status-badge {
             font-size: 12px;
             padding: 4px 10px;
             border-radius: 20px;
         }
-        .priority-high {
+.priority-high {
             background-color: #ffe5e5;
             color: #dc3545;
             font-size: 12px;
             padding: 4px 10px;
             border-radius: 20px;
         }
-              .welcome-card {
-            background: linear-gradient(135deg, #2563eb, #4338ca);
-            color: white;
-            border-radius: 16px;
-            padding: 30px;
-        }
 
-        .stat-card {
+
+.stat-card {
             border-radius: 14px;
             border: 1px solid #e5e7eb;
         }
 
-        .dept-card {
+.dept-card {
             border-radius: 14px;
             border: 1px solid #e5e7eb;
             position: relative;
             overflow: hidden;
         }
 
-        .dept-card::before {
+.dept-card::before {
             content: "";
             position: absolute;
             top: 0;
@@ -46,10 +42,16 @@ body {
             background: var(--color);
         }
 
-        .progress {
+.progress {
             height: 8px;
         }
-
+.welcome-card{
+    background: linear-gradient(135deg,#4f46e5,#6366f1);
+    color:white;
+    border-radius:16px;
+    padding:30px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.1);
+}
 /* Department dropdown button */
 .department-btn {
     background-color: #212529;
@@ -83,3 +85,4 @@ body {
 .department-menu a {
     text-decoration: none;
 }
+
