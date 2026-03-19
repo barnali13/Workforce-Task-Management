@@ -1,77 +1,159 @@
-# 🧑‍💼 Employee Task Management Dashboard
+# 🚀 Employee Task Management Dashboard
 
-A role-based task management system built using Django that streamlines task assignment, approval, and tracking across organizational departments.
+A role-based **Task Management System** built with Django to streamline task assignment, approval workflows, and departmental execution.
 
 ---
 
-## 🚀 Features
+## 📌 Overview
+
+This system enables structured task delegation across an organization with strict **role-based access control** and approval mechanisms. It ensures that tasks are properly reviewed before reaching departments, improving accountability and workflow efficiency.
+
+---
+
+## ✨ Features
 
 ### 🔐 Role-Based Access Control
-- **Super Admin**
-  - Full system control
-  - Assign tasks
-  - Approve or reject tasks
-  - Add comments on tasks  
 
-- **Admin**
-  - Assign tasks to departments
-  - Add comments on tasks  
+* **Super Admin**
 
-- **Department Users**
-  - View assigned tasks (only after approval)
-  - Access deadlines and attachments
-  - View comments (read-only)
+  * Full system control
+  * Approves tasks before execution
+  * Can assign tasks and add comments
 
----
+* **Admin**
 
-## 📌 Task Workflow
+  * Can assign tasks to departments
+  * Can add comments on tasks
 
-1. Tasks are created by **Super Admin** or **Admin**
-2. Tasks are assigned to specific **Departments**
-3. Each task includes:
-   - Title and description  
-   - Deadline  
-   - File attachments  
-4. Tasks must be **approved by Super Admin**
-5. Only approved tasks appear in the **Department Dashboard**
+* **Department Users**
+
+  * View assigned tasks only after approval
+  * Access task details, deadlines, attachments, and comments
+  * Cannot modify or comment (read-only access)
 
 ---
 
-## 💬 Comment System
+### 📝 Task Management
 
-- Super Admin and Admin can add comments on tasks  
-- Departments can:
-  - View all comments  
-  - Cannot add or edit comments (read-only access)
+* Assign tasks to departments with deadlines
+* Attach files to tasks
+* Tasks require **Super Admin approval** before visibility
+* Structured workflow ensuring controlled execution
 
 ---
 
-## 📊 Dashboards
+### 💬 Comment System
 
-- Main Dashboard  
-- Super Admin Dashboard  
-- Admin Dashboard  
-- Department Dashboard  
+* Super Admin and Admin can add comments on tasks
+* Departments can view comments but cannot respond
+* Enables top-down communication and clarity
 
-Each dashboard provides role-specific functionality and insights.
+---
+
+### 📊 Dashboards
+
+* Main Dashboard overview
+* Super Admin Dashboard
+* Admin Dashboard
+* Department Dashboard
+
+Each dashboard provides role-specific views and controls.
+
+---
+
+## 📸 Screenshots
+
+### 🏠 Main Dashboard
+
+<p align="center">
+  <img src="screenshots/maindashboard.png" width="800"/>
+</p>
+
+### 🛡️ Super Admin Dashboard
+
+<p align="center">
+  <img src="screenshots/superadmindashboard.png" width="800"/>
+</p>
+
+### ⚙️ Admin Dashboard
+
+<p align="center">
+  <img src="screenshots/admindashboard.png" width="800"/>
+</p>
+
+### 🏢 Department Dashboard
+
+<p align="center">
+  <img src="screenshots/deptdashboard.png" width="800"/>
+</p>
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Frontend:** HTML, CSS, Bootstrap  
-- **Backend:** Django  
-- **Database:** PostgreSQL  
-- **Deployment:** Render  
+**Frontend:**
+
+* HTML
+* CSS
+* Bootstrap
+
+**Backend:**
+
+* Django
+
+**Database:**
+
+* PostgreSQL
+
+**Deployment:**
+
+* Render
 
 ---
 
-## 📷 Screenshots
+## ⚙️ Setup Instructions
 
-> Screenshots are stored in the `screenshots/` folder
+```bash
+git clone https://github.com/your-username/your-repo.git
+cd your-repo
 
-```md
-![Main Dashboard](screenshots/maindashboard.png)
-![Super Admin Dashboard](screenshots/superadmindashboard.png)
-![Admin Dashboard](screenshots/admindashboard.png)
-![Department Dashboard](screenshots/deptdashboard.png)
+python -m venv env
+env\Scripts\activate
+
+pip install -r requirements.txt
+
+python manage.py migrate
+python manage.py runserver
+```
+
+---
+
+## 🔒 Environment Variables
+
+Create a `.env` file in the root directory:
+
+```
+SECRET_KEY=your-secret-key
+DEBUG=True
+ALLOWED_HOSTS=127.0.0.1,localhost
+DATABASE_URL=your-postgresql-url
+```
+
+---
+
+## 📈 Key Highlights
+
+* Implemented **multi-level role-based access control (RBAC)**
+* Designed an **approval-based workflow system**
+* Built scalable architecture with PostgreSQL
+* Deployed full-stack application on Render
+
+---
+
+## 📬 Contact
+
+For queries or collaboration, feel free to reach out.
+
+---
+
+⭐ If you like this project, consider giving it a star!
