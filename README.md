@@ -68,46 +68,10 @@ Each dashboard provides role-specific functionality and insights.
 
 ## 📷 Screenshots
 
-> Add your screenshots below
+> Screenshots are stored in the `screenshots/` folder
 
 ```md
 ![Main Dashboard](screenshots/maindashboard.png)
 ![Super Admin Dashboard](screenshots/superadmindashboard.png)
-![Admin Dashboard](screenshotsadmindashboard.png)
+![Admin Dashboard](screenshots/admindashboard.png)
 ![Department Dashboard](screenshots/deptdashboard.png)
-
-# Clone the repository
-git clone https://github.com/your-username/employee-task-dashboard.git
-
-# Navigate into the project directory
-cd employee-task-dashboard
-
-# Create a virtual environment
-python -m venv env
-
-# Activate the environment (Windows)
-env\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Apply migrations
-python manage.py migrate
-
-# Create superuser
-python manage.py createsuperuser
-
-# Run the development server
-python manage.py runserver
-
-📈 Future Enhancements
-
-Notification system (real-time + email)
-
-Task status tracking (Pending / In Progress / Completed)
-
-Analytics dashboard for performance monitoring
-
-Role-based API integration
-
-File preview support
